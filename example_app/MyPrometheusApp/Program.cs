@@ -15,6 +15,8 @@ otel.WithMetrics(metrics => metrics
     // Metrics provider from OpenTelemetry
     .AddAspNetCoreInstrumentation()
     .AddHttpClientInstrumentation()
+    .AddProcessInstrumentation()
+    .AddRuntimeInstrumentation()
     .AddMeter("MyPrometheusApp.Metrics")
     // Metrics provides by ASP.NET Core in .NET 8
     .AddMeter("Microsoft.AspNetCore.Hosting")
