@@ -6,6 +6,7 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
+      - prometheus_storage:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
@@ -17,9 +18,13 @@ services:
     container_name: grafana
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
+      - grafana-storage:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_USER=admin # Set your username
       - GF_SECURITY_ADMIN_PASSWORD=admin # Set your password
     ports:
       - 3000:3000
     restart: unless-stopped
+volumes:
+  grafana-storage: {}
+  prometheus_storage: {}
